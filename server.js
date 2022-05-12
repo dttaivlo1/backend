@@ -4,7 +4,7 @@ const cors = require("cors");
 const dbConfig = require("./config/db.config");
 const app = express();
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "*"
 };
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
@@ -62,14 +62,10 @@ function initial() {
 // simple route
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next()
-});
+
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to VY1-GO1 profile-app server." });
-  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.set('Access-Control-Allow-Origin', '*');
 });
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -3,8 +3,10 @@ const db = require("../model");
 const User = db.user;
 const Role = db.role;
 var jwt = require("jsonwebtoken");
+
 var bcrypt = require("bcryptjs");
 exports.signup = (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const user = new User({
     username: req.body.username,
     email: req.body.email,
@@ -60,6 +62,7 @@ exports.signup = (req, res) => {
   });
 };
 exports.signin = (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   User.findOne({
     username: req.body.username
   })
