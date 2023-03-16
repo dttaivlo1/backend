@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("../backend/model");
 const Role = db.role;
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+  .connect('mongodb://admin_flutter:QEVkevAPmrh1sZHq@cluster0.ecpl5sb.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -64,8 +64,9 @@ require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to VY1-GO1 profile-app server." });
   res.set('Access-Control-Allow-Origin', '*');
+
+  res.json({ message: "Welcome to VY1-GO1 profile-app server." });
 });
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
